@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: traefik
+    heritage: Helm
+    release: traefik
+  name: traefik-ipv6
+  namespace: kube-system
+  annotations:
+    "metallb.universe.tf/allow-shared-ip": "true"
+spec:
+  externalTrafficPolicy: Cluster
+  ipFamily: IPv6
+  ports:
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: https
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: http
+  selector:
+    app: traefik
+    release: traefik
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}

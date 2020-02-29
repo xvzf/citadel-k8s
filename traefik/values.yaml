@@ -1,0 +1,10 @@
+rbac:
+  enabled: true
+
+serviceType: LoadBalancer
+service:
+  annotations:
+    "metallb.universe.tf/allow-shared-ip": "true"
+
+ssl:
+  enabled: true
